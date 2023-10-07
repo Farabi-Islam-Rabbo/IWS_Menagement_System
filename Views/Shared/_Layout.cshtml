@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PurityERP</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-sweetalert/sweetalert.min.css" rel="stylesheet" />
+    <link href="~/lib/easy-autocomplete/easy-autocomplete.min.css" rel="stylesheet" />
+    <link href="~/css/adminStyle.css" rel="stylesheet" />
+
+    @await Component.InvokeAsync("NToastNotify")
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @*<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>*@
+    <script src="~/lib/easy-autocomplete/jquery.easy-autocomplete.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/lib/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="~/lib/datatables.net-bs4/dataTables.bootstrap4.min.js"></script>*@
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/lib/bootstrap-sweetalert/sweetalert.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $('#page-content-wrapper ,#sidebar-wrapper').toggleClass('toggled');
+
+        $('#bar').click(function () {
+            $(this).toggleClass('open');
+            $('#page-content-wrapper ,#sidebar-wrapper').toggleClass('toggled');
+
+        });
+    </script>
+    <script type="text/javascript">
+    @RenderSection("Scripts", required: false)
+

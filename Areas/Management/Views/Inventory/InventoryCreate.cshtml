@@ -1,0 +1,245 @@
+﻿@model PurityERP.Areas.Management.Models.Inventory
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Inventory Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="InventoryCreate">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Inventory Code</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Inventory Code" required asp-for="Code" value="@ViewBag.code">
+                        </div>
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Inventory Tittle</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Inventory Tittle" required asp-for="Tittle">
+                        </div>
+                        <span asp-validation-for="Tittle" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Purchase Date</label>
+                            <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Purchase Date" asp-for="PurchaseDate">
+                        </div>
+                        <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="UnidId" class="control-label">Unit</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" data-native-menu="false" id="units" asp-for="UnidId" asp-items="@(new SelectList(ViewBag.units, "UnitID","UnitName"))">
+                                <option disabled selected="selected">Select One</option>
+                            </select>
+                            @**@
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#unitcreate">  <i class="fas fa-plus-circle"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="UnidId" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Purchase Quantity</label>
+                            <input type="text" class="form-control" id="purchaseqty" onkeyup="purchase()" placeholder="Purchase Quantity" asp-for="PurchaseQuantity">
+                        </div>
+                        <span asp-validation-for="PurchaseQuantity" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Unit Price</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="UnitPrice" asp-for="UnitPrice">
+                        </div>
+                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="SupplierId" class="control-label">Supplier</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" data-native-menu="false" id="supplier" asp-for="SupplierId" asp-items="@(new SelectList(ViewBag.supplier, "SupplierId","SupplierName"))">
+                                <option disabled selected="selected">Select One</option>
+                            </select>
+                            @**@
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#suppliercreate">  <i class="fas fa-plus-circle"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="SupplierId" class="text-danger"></span>
+                    </div>
+                    @*<div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Remaining Quantity</label>
+                            <input type="text" class="form-control" id="remainqty" readonly placeholder="Remaining Quantity" asp-for="RemainingQty">
+                        </div>
+                        <span asp-validation-for="RemainingQty" class="text-danger"></span>
+                    </div>*@
+                </div>
+                <!-- /.card-body -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+    <div class="modal fade" id="unitcreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Unit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Unit Name</label>
+                        <input type="text" class="form-control" id="unitname" placeholder="Unit Name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="unitclose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="unitsubmit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Supplier Create Modal*@
+    <div class="modal fade" id="suppliercreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Unit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Supplier Name</label>
+                        <input type="text" class="form-control" id="supname" placeholder="Supplier Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Supplier Phone Number</label>
+                        <input type="text" class="form-control" id="supphone" placeholder="Supplier Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Supplier Address</label>
+                        <input type="text" class="form-control" id="supaddress" placeholder="Supplier Address">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="supplierclose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="suppliersubmit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    @section Scripts {
+
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
+        function purchase() {
+            var qty = document.getElementById('purchaseqty').value;
+            document.getElementById('remainqty').value = qty;
+        }
+
+        $("#unitsubmit").click(function () {
+            var Unitname = $("#unitname").val();
+            if (Unitname != null && Unitname != '') {
+                    $.getJSON('@Url.Action("UnitCreate", "Inventory")', { Unitname: Unitname }, function (subheads)  {
+                        $('#units').find("option:not(:first)").remove();
+                        console.log(subheads);
+                            $.each(subheads, function (index, subhead) {
+
+                                $('#units').append(`<option value = "` + subhead.unitID + `">` + subhead.unitName + `</option>`);
+                            });
+                        $('#units option:eq(1)').prop('selected', true);
+                        $("#unitname").val(null);
+                        $('#unitcreate').modal('toggle');
+                        $('#unitclose').click();
+                        
+                    });
+                }
+        });
+
+
+            $("#suppliersubmit").click(function () {
+                var mydata = {};
+                mydata.SupplierName = $("#supname").val();
+                mydata.SupplierPhno = $("#supphone").val();
+                mydata.SupplierAddress = $("#supaddress").val();
+                console.log(mydata);
+
+                $.ajax({
+                    url: "/Management/Inventory/SupplierCreate",
+                    type: "POST",
+                    data: { data: mydata },
+                    success: function (subheads) {
+                        $('#supplier').find("option:not(:first)").remove();
+                        console.log(subheads);
+                        $.each(subheads, function (index, subhead) {
+
+                            $('#supplier').append(`<option value = "` + subhead.supplierId + `">` + subhead.supplierName + `</option>`);
+                        });
+                        $('#supplier option:eq(1)').prop('selected', true);
+                        $("#supname").val(null);
+                        $("#supphone").val(null);
+                        $("#supaddress").val(null);
+                        $('#suppliercreate').modal('toggle');
+                        $('#supplierclose').click();
+                    },
+                    error: function (error) {
+                        alert('failed');
+                        alert(error);
+                    }
+
+                });
+                
+                
+                    
+            });
+
+        </script>
+    }
+</body>
+</html>

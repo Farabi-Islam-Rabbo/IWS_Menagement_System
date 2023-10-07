@@ -1,0 +1,195 @@
+﻿<h3 class="text-center m-4">All Report</h3>
+
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>Report Title</th>
+            <th>Perameter</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center">
+            <td>
+                Datewise Work Out details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="workoutrep">Report</button>
+            </td>
+        </tr>
+        <tr class="text-center">
+            <td>
+                Datewise Work In details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="workInrep">Report</button>
+            </td>
+        </tr>
+        <tr class="text-center">
+            <td>
+                Datewise Inventory In details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="InvInrep">Report</button>
+            </td>
+        </tr>
+        <tr class="text-center">
+            <td>
+                Datewise sales details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="Dailysalesrep">Report</button>
+            </td>
+        </tr>
+        <tr class="text-center">
+            <td>
+                Inventory Details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="invendetails">Report</button>
+            </td>
+        </tr>
+        <tr class="text-center">
+            <td>
+                Sales Statement
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="salesst">Report</button>
+            </td>
+        </tr>
+
+        <tr class="text-center">
+            <td>
+                Product Stock Details
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="prostk">Report</button>
+            </td>
+        </tr>
+
+        <tr class="text-center">
+            <td>
+                Work In Live
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" id="wrklive">Report</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script src="~/assets/plugins/jquery/jquery.min.js"></script>
+
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('#workoutrep').click(function () {
+
+
+       var host = window.origin;//publish
+       // var host = "https://localhost:44326";
+        window.open(host + '/Reports/Rep/Workoutdatewise?& ','_blank');//publish
+        //window.open(host + '/Rep/Workoutdatewise?& ','_blank');
+    });
+    
+
+    </script>
+
+    <script>
+        $('#workInrep').click(function () {
+
+
+             var host = window.origin;//publish
+           // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/WorkIndatewise?& ','_blank');//publish
+           // window.open(host + '/Rep/WorkIndatewise?& ', '_blank');
+        });
+
+
+    </script>
+
+    <script>
+        $('#InvInrep').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/InventoryIndatewise?& ', '_blank');//publish
+            // window.open(host + '/Rep/InventoryIndatewise?& ', '_blank');
+        });
+
+
+    </script>
+
+    <script>
+        $('#Dailysalesrep').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/SalesIndatewise?& ', '_blank');//publish
+            // window.open(host + '/Rep/SalesIndatewise?& ', '_blank');
+        });
+
+
+    </script>
+
+    <script>
+        $('#invendetails').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/InventoryDetails?& ', '_blank');//publish
+            // window.open(host + '/Rep/InventoryDetails?& ', '_blank');
+        });
+
+
+    </script>
+
+
+    <script>
+        $('#salesst').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/Salesstate?& ', '_blank');//publish
+            // window.open(host + '/Rep/Salesstate?& ', '_blank');
+        });
+
+
+    </script>
+
+
+    <script>
+        $('#prostk').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/ProductStockDetails ', '_blank');//publish
+            // window.open(host + '/Rep/ProductStockDetails?& ', '_blank');
+        });
+
+
+    </script>
+
+    <script>
+        $('#wrklive').click(function () {
+
+
+            var host = window.origin;//publish
+            // var host = "https://localhost:44326";
+            window.open(host + '/Reports/Rep/WorkLive ', '_blank');//publish
+            // window.open(host + '/Rep/WorkLive?& ', '_blank');
+        });
+
+
+    </script>
+
+
+
+    }

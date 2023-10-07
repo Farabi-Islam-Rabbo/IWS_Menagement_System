@@ -1,0 +1,95 @@
+﻿@model PurityERP.Areas.Management.ViewModel.ManagementVm
+
+@{ 
+    IEnumerable<PurityERP.Areas.Management.ViewModel.InventoryVM> InvTxnList 
+        = ViewData["InvTxnInfo"] as IEnumerable<PurityERP.Areas.Management.ViewModel.InventoryVM>;
+    }
+
+<h1>Details</h1>
+
+<div>
+    <h4>Inventory</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="form-group">
+                    <label for="Quantity">Inventory</label>
+                    <h6>@Model.Tittle ( @Model.Code )</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Quantity">Purchase detail</label>
+                    <h6><strong>On</strong> @Model.PurchaseDate </h6>
+                    <h6>
+                        <strong>Qty</strong> @Model.PurchaseQuantity @Model.UnitName,
+                        <strong>Per unit cost:</strong> @Model.UnitPrice
+                    </h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Quantity">Supplier</label>
+                    <h6>On @Model.SupplierName</h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="Quantity">Current stock</label>
+                    <h6>@Model.RemainingQty @Model.UnitName</h6>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-red text-info h5">Consumptions</div>
+                <div class="card-body p-0">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Product</th>
+                                <th>Inv. Qty</th>
+                                <th>Prod. Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PurityERP.Areas.Management.ViewModel.InventoryVM cstl in InvTxnList)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cstl.InvOutDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cstl.ProductTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cstl.InvOutQty)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => cstl.ProdQty)
+                                </td>
+                            </tr>
+}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+<div>
+    <a asp-action="EditInventory" asp-route-id="@Model.InventoryId">Edit</a> |
+    <a asp-action="InventoryIndex">Back to List</a>
+</div>
+
